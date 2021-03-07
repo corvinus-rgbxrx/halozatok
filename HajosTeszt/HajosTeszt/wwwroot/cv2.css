@@ -1,7 +1,7 @@
 ﻿body {
-    *
-
-{
+   
+}
+* {
     box-sizing: border-box;
 }
 
@@ -16,6 +16,7 @@
 
 #kep {
     background-color: gray;
+  
 }
 
 #masodikdoboz {
@@ -49,5 +50,4 @@
     #harmadikdoboz {
         flex: 1 1 50%;
     }
-}
 }
