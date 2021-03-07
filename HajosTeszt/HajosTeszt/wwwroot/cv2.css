@@ -1,0 +1,53 @@
+﻿body {
+    *
+
+{
+    box-sizing: border-box;
+}
+
+#elsodoboz, #kep, #masodikdoboz, #harmadikdoboz, #negyedikdoboz {
+    padding: 20px;
+}
+
+#elsodoboz {
+    background-color: lightgray;
+    text-align: center;
+}
+
+#kep {
+    background-color: gray;
+}
+
+#masodikdoboz {
+    background-color: lightgray;
+}
+
+#harmadikdoboz {
+    background-color: gray;
+}
+
+#negyedikdoboz {
+    background-color: lightgray;
+}
+
+@media screen and (min-width: 800px) {
+    body {
+        display: flex;
+        flex-direction: column;
+        max-width: 1500px;
+        margin: auto;
+    }
+
+    #kep {
+        order: -1;
+    }
+
+    #masodikdoboz {
+        flex: 1 1 50%;
+    }
+
+    #harmadikdoboz {
+        flex: 1 1 50%;
+    }
+}
+}
