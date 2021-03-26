@@ -1,4 +1,4 @@
-﻿var faktoriálisR = () => {
+﻿var faktoriálisR = (n) => {
     if (n === 0 || n === 1) {
         return 1;
     } else {
@@ -19,7 +19,7 @@ window.onload = () => {
             ujElem.classList.add("elem");
             ujElem.classList.add("doboz");
             ujElem.innerText = faktoriálisR(sor) / (faktoriálisR(oszlop) * faktoriálisR(sor - oszlop));
-            ujElem.style.color = rgb(0, 0, ${ 255 - (255 / 10 * ujElem.innerText) });
+            ujElem.style.color = `rgb(0, 0, 255)`;
             ujSor.appendChild(ujElem);
         }
     }
