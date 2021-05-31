@@ -1,29 +1,32 @@
-﻿
-using System;
+﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
+#nullable disable
+
 namespace HajosTeszt.Models
 {
-    public partial class HajostesztContext : DbContext
+    public partial class RGBXRXContext : DbContext
     {
-        public HajostesztContext()
+        public RGBXRXContext()
         {
         }
 
-        public HajostesztContext(DbContextOptions<HajostesztContext> options)
+        public RGBXRXContext(DbContextOptions<RGBXRXContext> options)
             : base(options)
         {
         }
 
-        public virtual DbSet<Question> Questions { get; set; }
+        public virtual DbSet<SzallodaMunkavallalo> SzallodaMunkavallalos { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
+#pragma warning disable CS1030 // #warning directive
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Data Source=sql.2rpi.hu,7000;Initial Catalog=Hajosteszt;User ID=hallgato;Password=Password123");
+                optionsBuilder.UseSqlServer("Data Source=corvinusdataba.database.windows.net;Initial Catalog=RGBXRX;User ID=greta00178;Password=20Valami");
+#pragma warning restore CS1030 // #warning directive
             }
         }
 
@@ -31,25 +34,23 @@ namespace HajosTeszt.Models
         {
             modelBuilder.HasAnnotation("Relational:Collation", "Hungarian_CI_AS");
 
-            modelBuilder.Entity<Question>(entity =>
+            modelBuilder.Entity<SzallodaMunkavallalo>(entity =>
             {
-                entity.ToTable("Question");
+                entity.HasKey(e => e.MunkasId);
 
-                entity.Property(e => e.QuestionId)
+                entity.ToTable("Szalloda_Munkavallalo");
+
+                entity.Property(e => e.MunkasId)
                     .ValueGeneratedNever()
-                    .HasColumnName("QuestionID");
+                    .HasColumnName("MunkasID");
 
-                entity.Property(e => e.Answer1).IsRequired();
+                entity.Property(e => e.Foglalkozas)
+                    .HasMaxLength(30)
+                    .IsFixedLength(true);
 
-                entity.Property(e => e.Answer2).IsRequired();
-
-                entity.Property(e => e.Answer3).IsRequired();
-
-                entity.Property(e => e.Image)
+                entity.Property(e => e.Munkavallalonev)
                     .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.QuestionText).IsRequired();
+                    .IsFixedLength(true);
             });
 
             OnModelCreatingPartial(modelBuilder);
